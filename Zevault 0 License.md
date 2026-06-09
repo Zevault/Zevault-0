@@ -32,9 +32,14 @@ The Software is **licensed, not sold**. The author retains all right, title, and
 
 ---
 
-## 4. User Data
+## 4. USER DATA & PRIVACY
 
-Zevault 0 stores all data **locally on your device**. The Software does not collect, transmit, or share any personal data with the author or any third party. You are solely responsible for your data and any backups thereof.
+Zevault 0 operates entirely offline. All data you create within the
+Software — including card entries, images, and settings — is stored
+locally on your own device and is never transmitted to the Author or
+any third party. You are solely responsible for maintaining backups of
+your data. The Author has no access to your data and accepts no
+responsibility for data loss.
 
 ---
 
@@ -64,7 +69,11 @@ This Agreement shall be governed by and construed in accordance with applicable 
 
 ## 9. Entire Agreement
 
-This Agreement constitutes the entire agreement between you and the author concerning the Software and supersedes all prior agreements, representations, and understandings.
+This Agreement represents the complete and exclusive agreement between
+you and the Author with respect to Zevault 0, and supersedes all prior
+understandings, communications, and agreements relating to the Software.
+The Author reserves the right to update this Agreement for future
+versions of the Software.
 
 ---
 
