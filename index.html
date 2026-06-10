@@ -1,25 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zevault 0</title>
-    <style>
-        body { font-family: sans-serif; background: #0f172a; color: white; text-align: center; padding: 50px; }
-        h1 { font-size: 3rem; margin-bottom: 10px; }
-        p { color: #94a3b8; font-size: 1.2rem; margin-bottom: 40px; }
-        .download-btn { 
-            background: #2563eb; color: white; padding: 15px 40px; 
-            font-size: 1.2rem; font-weight: bold; text-decoration: none; 
-            border-radius: 8px; display: inline-block; transition: 0.2s;
-        }
-        .download-btn:hover { background: #1d4ed8; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zevault 0 — Download</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal:      #09e5c8;
+      --teal-glow: rgba(9, 229, 200, 0.25);
+      --teal-dim:  rgba(9, 229, 200, 0.08);
+      --teal-mid:  rgba(9, 229, 200, 0.15);
+      --bg:        #0a0a0a;
+      --surface:   #111111;
+      --surface2:  #161616;
+      --border:    rgba(9, 229, 200, 0.15);
+      --text:      #e8e8e8;
+      --muted:     #555;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* — grid bg — */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(9,229,200,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(9,229,200,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* — radial top glow — */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 700px;
+      background: radial-gradient(ellipse at center 30%, rgba(9,229,200,0.09) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ═══════════ HEADER ═══════════ */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 48px;
+      background: rgba(10,10,10,0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo-text {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.55em;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 5px;
+      text-shadow: 0 0 24px var(--teal-glow);
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    .header-nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8em;
+      letter-spacing: 0.8px;
+      transition: color 0.2s;
+      text-transform: uppercase;
+    }
+
+    .header-nav a:hover { color: var(--teal); }
+
+    /* ═══════════ HERO ═══════════ */
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 80px 24px 72px;
+    }
+
+    /* live badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--teal-dim);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 0.7em;
+      letter-spacing: 1.5px;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-bottom: 36px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--teal); }
+      50%       { opacity: 0.35; box-shadow: 0 0 3px var(--teal); }
+    }
+
+    /* HUD bracket frame — signature element */
+    .hud-frame {
+      position: relative;
+      display: inline-block;
+      padding: 18px 28px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hud-frame::before,
+    .hud-frame::after,
+    .hud-frame .br,
+    .hud-frame .bl {
+      content: '';
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      transition: all 0.4s ease;
+    }
+
+    /* top-left */
+    .hud-frame::before {
+      top: 0; left: 0;
+      border-top: 2px solid var(--teal);
+      border-left: 2px solid var(--teal);
+      box-shadow: -2px -2px 8px var(--teal-glow);
+      animation: bracketTL 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    /* top-right */
+    .hud-frame::after {
+      top: 0; right: 0;
+      border-top: 2px solid var(--teal);
+      border-right: 2px solid var(--teal);
+      box-shadow: 2px -2px 8px var(--teal-glow);
+      animation: bracketTR 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    /* bottom-right */
+    .hud-frame .br {
+      bottom: 0; right: 0;
+      border-bottom: 2px solid var(--teal);
+      border-right: 2px solid var(--teal);
+      box-shadow: 2px 2px 8px var(--teal-glow);
+      animation: bracketBR 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    /* bottom-left */
+    .hud-frame .bl {
+      bottom: 0; left: 0;
+      border-bottom: 2px solid var(--teal);
+      border-left: 2px solid var(--teal);
+      box-shadow: -2px 2px 8px var(--teal-glow);
+      animation: bracketBL 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    @keyframes bracketTL { from { width:0; height:0; opacity:0 } to { width:22px; height:22px; opacity:1 } }
+    @keyframes bracketTR { from { width:0; height:0; opacity:0 } to { width:22px; height:22px; opacity:1 } }
+    @keyframes bracketBR { from { width:0; height:0; opacity:0 } to { width:22px; height:22px; opacity:1 } }
+    @keyframes bracketBL { from { width:0; height:0; opacity:0 } to { width:22px; height:22px; opacity:1 } }
+
+    /* scan sweep across hero title */
+    .hud-frame .scan {
+      position: absolute;
+      left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(to bottom, transparent, rgba(9,229,200,0.05), transparent);
+      pointer-events: none;
+      animation: scanY 5s linear infinite;
+    }
+
+    @keyframes scanY {
+      0%   { top: -50%; }
+      100% { top: 110%; }
+    }
+
+    .hero-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(3.8rem, 11vw, 7.5rem);
+      font-weight: 700;
+      letter-spacing: 10px;
+      color: #fff;
+      text-shadow:
+        0 0 40px rgba(9,229,200,0.3),
+        0 0 90px rgba(9,229,200,0.08);
+      line-height: 1;
+    }
+
+    .hero-title .accent { color: var(--teal); }
+
+    .hero-edition {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+      color: var(--muted);
+      letter-spacing: 8px;
+      margin-top: 4px;
+    }
+
+    .hero-tagline {
+      max-width: 440px;
+      font-size: 0.88em;
+      color: #444;
+      line-height: 1.75;
+      margin: 28px 0 44px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* — Download CTA — */
+    .cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .download-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--teal);
+      color: #0a0a0a;
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.15em;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 17px 44px;
+      border-radius: 4px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow:
+        0 0 22px var(--teal-glow),
+        0 0 50px rgba(9,229,200,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.18);
+      overflow: hidden;
+    }
+
+    .download-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+      transition: left 0.4s ease;
+    }
+
+    .download-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 30px var(--teal-glow), 0 0 70px rgba(9,229,200,0.18); }
+    .download-btn:hover::before { left: 160%; }
+
+    .download-btn svg { flex-shrink: 0; }
+
+    .btn-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.72em;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+    }
+
+    .btn-meta span { display: flex; align-items: center; gap: 5px; }
+    .btn-meta .sep { opacity: 0.25; }
+
+    /* ═══════════ STATS STRIP ═══════════ */
+    .stats-strip {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .stat {
+      flex: 1;
+      max-width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 16px;
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .stat:last-child { border-right: none; }
+    .stat:hover { background: var(--teal-dim); }
+
+    .stat-num {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 2.2em;
+      font-weight: 700;
+      color: var(--teal);
+      text-shadow: 0 0 16px var(--teal-glow);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.7em;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ═══════════ INFO GRID ═══════════ */
+    .info-section {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 24px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 26px 28px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .info-card:hover {
+      border-color: rgba(9,229,200,0.35);
+      box-shadow: 0 0 24px var(--teal-dim);
+    }
+
+    .card-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.72em;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      color: var(--teal);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(9,229,200,0.05);
+      font-size: 0.82em;
+    }
+
+    .info-row:last-child { border-bottom: none; }
+    .info-row .lbl { color: var(--muted); }
+    .info-row .val { color: var(--text); font-weight: 500; }
+    .info-row .val.hi { color: var(--teal); }
+
+    /* ═══════════ FEATURES ═══════════ */
+    .features-section {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 18px 24px 0;
+    }
+
+    .features-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 26px 28px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 32px;
+      margin-top: 2px;
+    }
+
+    .feat-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82em;
+      color: #4a4a4a;
+      padding: 6px 0;
+    }
+
+    .feat-item::before {
+      content: '›';
+      color: var(--teal);
+      font-size: 1.1em;
+      line-height: 1.5;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════ BOTTOM CTA ═══════════ */
+    .bottom-cta {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 18px auto 0;
+      padding: 0 24px;
+    }
+
+    .bottom-cta-card {
+      background: linear-gradient(135deg, #111 0%, #0d1a18 100%);
+      border: 1px solid var(--teal-mid);
+      border-radius: 6px;
+      padding: 40px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      box-shadow: 0 0 40px rgba(9,229,200,0.06);
+    }
+
+    .bottom-cta-text h3 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.6em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .bottom-cta-text p {
+      font-size: 0.82em;
+      color: var(--muted);
+    }
+
+    .download-btn-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1em;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 13px 30px;
+      border-radius: 4px;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 12px var(--teal-dim);
+    }
+
+    .download-btn-sm:hover {
+      background: var(--teal-dim);
+      box-shadow: 0 0 20px var(--teal-glow);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════ FOOTER ═══════════ */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      margin-top: 72px;
+      padding: 22px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1em;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 4px;
+      text-shadow: 0 0 12px var(--teal-glow);
+    }
+
+    .footer-text { font-size: 0.72em; color: var(--muted); }
+
+    .footer-gh a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75em;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+
+    .footer-gh a:hover { color: var(--teal); }
+
+    /* ═══════════ ANIMATIONS ═══════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════ RESPONSIVE ═══════════ */
+    @media (max-width: 680px) {
+      header { padding: 14px 20px; }
+      .header-nav { display: none; }
+      .stats-strip { flex-wrap: wrap; }
+      .stat { min-width: 50%; border-bottom: 1px solid var(--border); }
+      .info-section,
+      .features-grid { grid-template-columns: 1fr; }
+      .bottom-cta-card { flex-direction: column; text-align: center; }
+      footer { flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Zevault 0</h1>
-    <p>Download the latest Zevault 0 version.</p>
-    
-    <a href="https://github.com/Zevault/Zevault-0/releases/download/v1.0.0/Zevault.0.Setup.1.0.0.exe" class="download-btn">Download for Windows (98MB)</a>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="logo-text">ZEVAULT</div>
+    <nav class="header-nav">
+      <a href="https://github.com/Zevault/Zevault-0" target="_blank">GitHub</a>
+      <a href="https://github.com/Zevault/Zevault-0/releases" target="_blank">Releases</a>
+    </nav>
+  </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Latest Release &nbsp;·&nbsp; v1.0.0
+    </div>
+
+    <div class="hud-frame">
+      <span class="br"></span>
+      <span class="bl"></span>
+      <div class="scan"></div>
+      <h1 class="hero-title">ZE<span class="accent">VAULT</span></h1>
+      <div class="hero-edition">EDITION &nbsp;0</div>
+    </div>
+
+    <p class="hero-tagline">
+      Your personal media vault. Explore anime, cartoons, series &amp; games from your library — beautifully organised, no internet needed.
+    </p>
+
+    <div class="cta-wrap">
+      <a href="https://github.com/Zevault/Zevault-0/releases/download/v1.0.0/Zevault.0.Setup.1.0.0.exe" class="download-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download for Windows
+      </a>
+      <div class="btn-meta">
+        <span>⊞ Windows 10 / 11</span>
+        <span class="sep">|</span>
+        <span>98 MB</span>
+        <span class="sep">|</span>
+        <span>Free</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── STATS STRIP ── -->
+  <div class="stats-strip">
+    <div class="stat">
+      <div class="stat-num">46</div>
+      <div class="stat-label">Titles in Vault</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-label">Categories</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">v1</div>
+      <div class="stat-label">First Edition</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">98<small style="font-size:0.55em; color:var(--muted)">MB</small></div>
+      <div class="stat-label">Install Size</div>
+    </div>
+  </div>
+
+  <!-- ── INFO CARDS ── -->
+  <div class="info-section">
+
+    <div class="info-card">
+      <div class="card-label">Release Info</div>
+      <div class="info-row"><span class="lbl">Version</span><span class="val hi">1.0.0</span></div>
+      <div class="info-row"><span class="lbl">Edition</span><span class="val">Zevault 0</span></div>
+      <div class="info-row"><span class="lbl">File</span><span class="val">Zevault.0.Setup.1.0.0.exe</span></div>
+      <div class="info-row"><span class="lbl">Size</span><span class="val">98 MB</span></div>
+      <div class="info-row"><span class="lbl">License</span><span class="val">Free</span></div>
+    </div>
+
+    <div class="info-card">
+      <div class="card-label">System Requirements</div>
+      <div class="info-row"><span class="lbl">Platform</span><span class="val">Windows 10 / 11</span></div>
+      <div class="info-row"><span class="lbl">Architecture</span><span class="val">x64</span></div>
+      <div class="info-row"><span class="lbl">Disk Space</span><span class="val">~200 MB</span></div>
+      <div class="info-row"><span class="lbl">Internet</span><span class="val hi">Not Required</span></div>
+      <div class="info-row"><span class="lbl">RAM</span><span class="val">2 GB+</span></div>
+    </div>
+
+  </div>
+
+  <!-- ── FEATURES ── -->
+  <div class="features-section">
+    <div class="features-card">
+      <div class="card-label">What's Inside</div>
+      <div class="features-grid">
+        <div class="feat-item">46 pre-loaded titles across Anime, Cartoon, Series &amp; Games</div>
+        <div class="feat-item">Flip-card view with studio, year &amp; category info</div>
+        <div class="feat-item">Search titles instantly as you type</div>
+        <div class="feat-item">Category filtering with one click</div>
+        <div class="feat-item">Paginated browsing — 10 titles per page</div>
+        <div class="feat-item">Dark neon interface, fully offline</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BOTTOM CTA ── -->
+  <div class="bottom-cta">
+    <div class="bottom-cta-card">
+      <div class="bottom-cta-text">
+        <h3>Ready to open the vault?</h3>
+        <p>One click. No account. No internet. Just your library.</p>
+      </div>
+      <a href="https://github.com/Zevault/Zevault-0/releases/download/v1.0.0/Zevault.0.Setup.1.0.0.exe" class="download-btn-sm">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download
+      </a>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-logo">ZEVAULT</div>
+    <div class="footer-text">Zevault 0 &nbsp;·&nbsp; v1.0.0</div>
+    <div class="footer-gh"><a href="https://github.com/Zevault/Zevault-0" target="_blank">View on GitHub ↗</a></div>
+  </footer>
+
 </body>
 </html>
