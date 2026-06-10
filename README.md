@@ -80,7 +80,7 @@ Run the installer, follow the steps, and Zevault will appear on your desktop and
 
 - [Electron](https://www.electronjs.org/) — desktop runtime
 - [electron-builder](https://www.electron.build/) — packaging & installer
-- Vanilla JS, HTML, CSS — no frontend frameworks
+- JS, HTML, CSS — no frontend frameworks
 - Fonts: [Rajdhani](https://fonts.google.com/specimen/Rajdhani) · [Poppins](https://fonts.google.com/specimen/Poppins)
 
 ---
