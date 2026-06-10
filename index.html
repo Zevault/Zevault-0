@@ -302,59 +302,13 @@
     .btn-meta span { display: flex; align-items: center; gap: 5px; }
     .btn-meta .sep { opacity: 0.25; }
 
-    /* ═══════════ STATS STRIP ═══════════ */
-    .stats-strip {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: var(--surface);
-      display: flex;
-      justify-content: center;
-      gap: 0;
-    }
-
-    .stat {
-      flex: 1;
-      max-width: 220px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 28px 16px;
-      border-right: 1px solid var(--border);
-      transition: background 0.2s;
-    }
-
-    .stat:last-child { border-right: none; }
-    .stat:hover { background: var(--teal-dim); }
-
-    .stat-num {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 2.2em;
-      font-weight: 700;
-      color: var(--teal);
-      text-shadow: 0 0 16px var(--teal-glow);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.7em;
-      color: var(--muted);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-top: 4px;
-    }
-
     /* ═══════════ INFO GRID ═══════════ */
     .info-section {
       position: relative;
       z-index: 1;
-      max-width: 860px;
+      max-width: 500px;
       margin: 0 auto;
       padding: 64px 24px 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
     }
 
     .info-card {
@@ -434,67 +388,6 @@
       flex-shrink: 0;
     }
 
-    /* ═══════════ BOTTOM CTA ═══════════ */
-    .bottom-cta {
-      position: relative;
-      z-index: 1;
-      max-width: 860px;
-      margin: 18px auto 0;
-      padding: 0 24px;
-    }
-
-    .bottom-cta-card {
-      background: linear-gradient(135deg, #111 0%, #0d1a18 100%);
-      border: 1px solid var(--teal-mid);
-      border-radius: 6px;
-      padding: 40px 36px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 32px;
-      box-shadow: 0 0 40px rgba(9,229,200,0.06);
-    }
-
-    .bottom-cta-text h3 {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.6em;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-
-    .bottom-cta-text p {
-      font-size: 0.82em;
-      color: var(--muted);
-    }
-
-    .download-btn-sm {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: transparent;
-      border: 1px solid var(--teal);
-      color: var(--teal);
-      text-decoration: none;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1em;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      padding: 13px 30px;
-      border-radius: 4px;
-      white-space: nowrap;
-      transition: all 0.25s ease;
-      box-shadow: 0 0 12px var(--teal-dim);
-    }
-
-    .download-btn-sm:hover {
-      background: var(--teal-dim);
-      box-shadow: 0 0 20px var(--teal-glow);
-      transform: translateY(-2px);
-    }
-
     /* ═══════════ FOOTER ═══════════ */
     footer {
       position: relative;
@@ -538,11 +431,7 @@
     @media (max-width: 680px) {
       header { padding: 14px 20px; }
       .header-nav { display: none; }
-      .stats-strip { flex-wrap: wrap; }
-      .stat { min-width: 50%; border-bottom: 1px solid var(--border); }
-      .info-section,
       .features-grid { grid-template-columns: 1fr; }
-      .bottom-cta-card { flex-direction: column; text-align: center; }
       footer { flex-direction: column; gap: 10px; text-align: center; }
     }
   </style>
@@ -598,27 +487,8 @@
 
   </section>
 
-  <!-- ── STATS STRIP ── -->
-  <div class="stats-strip">
-    <div class="stat">
-      <div class="stat-num">46</div>
-      <div class="stat-label">Titles in Vault</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">4</div>
-      <div class="stat-label">Categories</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">v1</div>
-      <div class="stat-label">First Edition</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">98<small style="font-size:0.55em; color:var(--muted)">MB</small></div>
-      <div class="stat-label">Install Size</div>
-    </div>
-  </div>
 
-  <!-- ── INFO CARDS ── -->
+  <!-- ── INFO CARD ── -->
   <div class="info-section">
 
     <div class="info-card">
@@ -627,16 +497,7 @@
       <div class="info-row"><span class="lbl">Edition</span><span class="val">Zevault 0</span></div>
       <div class="info-row"><span class="lbl">File</span><span class="val">Zevault.0.Setup.1.0.0.exe</span></div>
       <div class="info-row"><span class="lbl">Size</span><span class="val">98 MB</span></div>
-      <div class="info-row"><span class="lbl">License</span><span class="val">Free</span></div>
-    </div>
-
-    <div class="info-card">
-      <div class="card-label">System Requirements</div>
-      <div class="info-row"><span class="lbl">Platform</span><span class="val">Windows 10 / 11</span></div>
-      <div class="info-row"><span class="lbl">Architecture</span><span class="val">x64</span></div>
-      <div class="info-row"><span class="lbl">Disk Space</span><span class="val">~200 MB</span></div>
-      <div class="info-row"><span class="lbl">Internet</span><span class="val hi">Not Required</span></div>
-      <div class="info-row"><span class="lbl">RAM</span><span class="val">2 GB+</span></div>
+      <div class="info-row"><span class="lbl">License</span><span class="val">EULA</span></div>
     </div>
 
   </div>
@@ -646,7 +507,6 @@
     <div class="features-card">
       <div class="card-label">What's Inside</div>
       <div class="features-grid">
-        <div class="feat-item">46 pre-loaded titles across Anime, Cartoon, Series &amp; Games</div>
         <div class="feat-item">Flip-card view with studio, year &amp; category info</div>
         <div class="feat-item">Search titles instantly as you type</div>
         <div class="feat-item">Category filtering with one click</div>
@@ -656,23 +516,6 @@
     </div>
   </div>
 
-  <!-- ── BOTTOM CTA ── -->
-  <div class="bottom-cta">
-    <div class="bottom-cta-card">
-      <div class="bottom-cta-text">
-        <h3>Ready to open the vault?</h3>
-        <p>One click. No account. No internet. Just your library.</p>
-      </div>
-      <a href="https://github.com/Zevault/Zevault-0/releases/download/v1.0.0/Zevault.0.Setup.1.0.0.exe" class="download-btn-sm">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-          <polyline points="7 10 12 15 17 10"/>
-          <line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
-        Download
-      </a>
-    </div>
-  </div>
 
   <!-- ── FOOTER ── -->
   <footer>
