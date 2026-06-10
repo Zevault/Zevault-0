@@ -29,7 +29,6 @@
       overflow-x: hidden;
     }
 
-    /* — grid bg — */
     body::before {
       content: '';
       position: fixed;
@@ -42,7 +41,6 @@
       z-index: 0;
     }
 
-    /* — radial top glow — */
     body::after {
       content: '';
       position: fixed;
@@ -56,7 +54,6 @@
       z-index: 0;
     }
 
-    /* ═══════════ HEADER ═══════════ */
     header {
       position: sticky;
       top: 0;
@@ -95,7 +92,6 @@
 
     .header-nav a:hover { color: var(--teal); }
 
-    /* ═══════════ HERO ═══════════ */
     .hero {
       position: relative;
       z-index: 1;
@@ -106,7 +102,6 @@
       padding: 80px 24px 72px;
     }
 
-    /* live badge */
     .badge {
       display: inline-flex;
       align-items: center;
@@ -137,7 +132,6 @@
       50%       { opacity: 0.35; box-shadow: 0 0 3px var(--teal); }
     }
 
-    /* HUD bracket frame — signature element */
     .hud-frame {
       position: relative;
       display: inline-block;
@@ -156,7 +150,6 @@
       transition: all 0.4s ease;
     }
 
-    /* top-left */
     .hud-frame::before {
       top: 0; left: 0;
       border-top: 2px solid var(--teal);
@@ -165,7 +158,6 @@
       animation: bracketTL 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) both;
     }
 
-    /* top-right */
     .hud-frame::after {
       top: 0; right: 0;
       border-top: 2px solid var(--teal);
@@ -174,7 +166,6 @@
       animation: bracketTR 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) both;
     }
 
-    /* bottom-right */
     .hud-frame .br {
       bottom: 0; right: 0;
       border-bottom: 2px solid var(--teal);
@@ -183,7 +174,6 @@
       animation: bracketBR 0.8s 0.3s cubic-bezier(0.16,1,0.3,1) both;
     }
 
-    /* bottom-left */
     .hud-frame .bl {
       bottom: 0; left: 0;
       border-bottom: 2px solid var(--teal);
@@ -197,7 +187,6 @@
     @keyframes bracketBR { from { width:0; height:0; opacity:0 } to { width:22px; height:22px; opacity:1 } }
     @keyframes bracketBL { from { width:0; height:0; opacity:0 } to { width:22px; height:22px; opacity:1 } }
 
-    /* scan sweep across hero title */
     .hud-frame .scan {
       position: absolute;
       left: 0; right: 0;
@@ -226,7 +215,6 @@
 
     .hero-title .accent { color: var(--teal); }
 
-
     .hero-tagline {
       max-width: 440px;
       font-size: 0.88em;
@@ -236,7 +224,6 @@
       animation: fadeUp 0.6s 0.2s ease both;
     }
 
-    /* — Download CTA — */
     .cta-wrap {
       display: flex;
       flex-direction: column;
@@ -295,7 +282,6 @@
     .btn-meta span { display: flex; align-items: center; gap: 5px; }
     .btn-meta .sep { opacity: 0.25; }
 
-    /* ═══════════ INFO GRID ═══════════ */
     .info-section {
       position: relative;
       z-index: 1;
@@ -341,7 +327,6 @@
     .info-row .val { color: var(--text); font-weight: 500; }
     .info-row .val.hi { color: var(--teal); }
 
-    /* ═══════════ FEATURES ═══════════ */
     .features-section {
       position: relative;
       z-index: 1;
@@ -381,7 +366,6 @@
       flex-shrink: 0;
     }
 
-    /* ═══════════ FOOTER ═══════════ */
     footer {
       position: relative;
       z-index: 1;
@@ -414,13 +398,11 @@
 
     .footer-gh a:hover { color: var(--teal); }
 
-    /* ═══════════ ANIMATIONS ═══════════ */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ═══════════ RESPONSIVE ═══════════ */
     @media (max-width: 680px) {
       header { padding: 14px 20px; }
       .header-nav { display: none; }
@@ -431,7 +413,6 @@
 </head>
 <body>
 
-  <!-- ── HEADER ── -->
   <header>
     <div class="logo-text">ZEVAULT</div>
     <nav class="header-nav">
@@ -440,7 +421,6 @@
     </nav>
   </header>
 
-  <!-- ── HERO ── -->
   <section class="hero">
 
     <div class="badge">
@@ -477,10 +457,7 @@
 
   </section>
 
-
-  <!-- ── INFO CARD ── -->
   <div class="info-section">
-
     <div class="info-card">
       <div class="card-label">Release Info</div>
       <div class="info-row"><span class="lbl">Version</span><span class="val hi">1.0.0</span></div>
@@ -489,10 +466,8 @@
       <div class="info-row"><span class="lbl">Size</span><span class="val">98 MB</span></div>
       <div class="info-row"><span class="lbl">License</span><span class="val">EULA</span></div>
     </div>
-
   </div>
 
-  <!-- ── FEATURES ── -->
   <div class="features-section">
     <div class="features-card">
       <div class="card-label">What's Inside</div>
@@ -506,8 +481,6 @@
     </div>
   </div>
 
-
-  <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-logo">ZEVAULT</div>
     <div class="footer-text">Zevault 0 &nbsp;·&nbsp; v1.0.0</div>
