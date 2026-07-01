@@ -19,7 +19,7 @@
 
 ---
 
-## What is Zevault?
+## What is Zevault 0?
 
 Zevault 0 is a desktop application for Windows that lets you build a personal catalogue of all the media you love. Think of it as a visual library where every movie, anime, book, game, or anything else you enjoy gets its own card complete with cover art, metadata, documents, links, and your own ratings.
 
