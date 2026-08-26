@@ -30,19 +30,19 @@ Everything runs offline. Your data stays on your machine. No accounts, no intern
 ## Features
 
 ### 🃏 Card-Based Library
-Create a card for any piece of media you want to track. Each card holds a title, cover image, tags, rating, status, notes, and more — a full profile for whatever you're cataloguing.
+Create a card for any piece of media you want to track. Each card holds a title, cover image, tags, rating, status, notes, and more, a full profile for whatever you're cataloguing.
 
 ### 📂 Categories & Custom Organization
-Zevault ships with 7 built-in categories — **Movies**, **Series**, **Anime**, **Cartoon**, **Games**, **Webtoon**, and **Books** — each with their own metadata fields (studio, author, language, artist, and more). Don't see what you need? Create your own custom categories with a custom icon and fields.
+Zevault ships with 7 built-in categories — **Movies**, **Series**, **Anime**, **Animations**, **Games**, **Webtoons**, and **Books** — each with their own metadata fields (studio, author, language, artist, and more). Don't see what you need? Create your own custom categories with a custom icon and fields.
 
 ### 🏷️ Tag System
 Every category comes with genre tags out of the box (Action, Adventure, Romance, Sci-Fi, and more). You can extend and customise these tags however you like, keeping your library easy to browse and filter.
 
 ### ⭐ Ratings & Status Tracking
-Rate your entries with a star system and mark them with a status — track what you've finished, what you're still watching, and what's on your list.
+Rate your entries with a star system and mark them with a status track what you've finished, what you're still watching, and what's on your list.
 
 ### 🖼️ Image Gallery
-Attach multiple images to any card — fan art, screenshots, posters, whatever. Supports JPG, PNG, and GIF formats.
+Attach multiple images to any card, fan art, screenshots, posters, whatever. Supports JPG, PNG, and GIF formats.
 
 ### 📄 Document Attachments
 Link TXT or PDF files directly to a card — helpful for e-books, manuals, liner notes, anything you want kept together with that entry.
@@ -59,9 +59,6 @@ Export your full library to a single backup file and import it on any machine. K
 ### 🔍 Search, Filter & Sort
 Find anything fast. Search by name, filter by category and tags, sort by default order, title, rating, or date added.
 
-### 📐 Grid View Control
-Switch between small, medium, and large card grids to suit your screen and preference.
-
 ---
 
 ## Download
@@ -70,7 +67,7 @@ Head to the [**Releases page**](https://github.com/Zevault/Zevault-0/releases/la
 
 **System requirements:**
 - Windows 10 or later (x64)
-- ~400 MB disk space for installation
+- ~450 MB disk space for installation
 
 Run the installer, follow the steps, and Zevault will appear on your desktop and Start menu.
 
